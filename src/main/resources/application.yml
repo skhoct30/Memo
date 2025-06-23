@@ -1,0 +1,19 @@
+#spring.application.name=Memo
+#
+#spring.thymeleaf.cache=false
+
+
+spring:
+  config:
+    import: security-varables.yml
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/memo_skhoct30
+    username: root
+    password: ${mysql.password}
+  thymeleaf:
+    cache: false
+  application:
+    name: Memo
+mybatis:
+  mapper-locations: mappers/*Mapper.xml
