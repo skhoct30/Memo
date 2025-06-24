@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/default}">
+	<section layout:fragment="contents" class="contents d-flex justify-content-center">
+		<div class="user-box memo-bg my-5 p-5 rounded-lg"> <!-- 일단 부트스트랩으로 사이즈 라운드 조절함 -->
+			<h1 class="text-center">로그인</h1>
+			<input type="text" class="form-control mt-4" placeholder="아이디">
+			<input type="password" class="form-control mt-2" placeholder="비밀번호">
+			<button type="button" class="btn btn-secondary btn-block mt-3">로그인</button>	
+			<div class="text-center mt-4"></div> <a href="/user/join-view"></a>
+		</div>
+	</section>
+</html>
