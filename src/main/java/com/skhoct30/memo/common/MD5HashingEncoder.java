@@ -12,7 +12,7 @@ public class MD5HashingEncoder {
 	public static String encode(String message) {
 		
 		try {
-			MessageDigest messageDigest = MessageDigest.getInstance("mb5");
+			MessageDigest messageDigest = MessageDigest.getInstance("MD5");
 			
 			byte[] bytes = message.getBytes();
 			
