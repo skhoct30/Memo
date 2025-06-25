@@ -1,0 +1,17 @@
+package com.skhoct30.memo.user.repository;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+@Mapper
+public interface UserRepository {
+	
+	
+	// Mybatis 에서 가져올 int 정수값.
+	public int insertUser(
+			@Param("loginId") String loginId
+			, @Param("password") String password
+			, @Param("name") String name
+			, @Param("email") String email);
+
+}
