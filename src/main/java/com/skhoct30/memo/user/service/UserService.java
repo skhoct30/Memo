@@ -3,6 +3,7 @@ package com.skhoct30.memo.user.service;
 import org.springframework.stereotype.Service;
 
 import com.skhoct30.memo.common.MD5HashingEncoder;
+import com.skhoct30.memo.user.domain.User;
 import com.skhoct30.memo.user.repository.UserRepository;
 
 @Service
@@ -41,5 +42,20 @@ public class UserService {
 		}
 		
 	}
+	
+	// 로그인
+	
+	public User getUser(String loginId, String password) {
+		// 위에 두 컬럼에 조회하는 과정을 알아야해 레파시토리 ㄱㄱ
+		
+		// 비밀번호가 일치하지않을거라서 해싱해서 비밀번호를 일치하게 만들어야한다. 해싱으로 내가 바꿨잖음.
+		
+		String hashingPassword = MD5HashingEncoder.encode(password);
+		
+		
+		return userRepository.selectUser(loginId, hashingPassword);
+	}
+	
+	
 	
 }
