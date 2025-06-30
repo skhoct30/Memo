@@ -21,13 +21,15 @@
 	
 	<script layout:fragment="script">
 		$("#saveBtn").on("click", function(){
-			let title = $("#titleInput").val;
+			
+			let title = $("#titleInput").val();
 			let contents = $("#contentsInput").val();
 			
 			if(title ==""){
 				alert("제목을 입력하세요");
 				return;
 			}
+			
 			if(contents == ""){
 				alert("내용을 입력하세요");
 				return;
@@ -35,17 +37,17 @@
 			
 			$.ajax({
 				type:"post"
-				, url:"/post/creat"
+				, url:"/post/create"
 				, data:{"title":title, "contents":contents}
 				, success:function(response){
 					if(response.result == "success"){
-						location.href = "/post/list-view"; 
+						location.href = "/post/list-view"
 					} else {
-						alert("글 작성 실패");
+						alert("글 작성 실패!");
 					}
 				}
 				, error:function() {
-					alert("글 작성 에러!");
+					alert("글 작성 오류!");
 				}
 			})
 			

@@ -28,7 +28,7 @@ public class PostRestController {
 	
 	
 	//
-	@PostMapping("/creat")
+	@PostMapping("/create")
 	public Map<String, String> createPost(
 			@RequestParam String title
 			, @RequestParam String contents

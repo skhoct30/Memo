@@ -22,6 +22,10 @@ header {
 	
 }
 
+.contents > .memo-list {
+	width:900px;
+}
+
 
 footer {
 	height:100px;
