@@ -17,6 +17,11 @@ header {
 	width:400px;
 }
 
+.contents > .memo-box {
+	width:800px;
+	
+}
+
 
 footer {
 	height:100px;
