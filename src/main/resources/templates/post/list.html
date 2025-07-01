@@ -5,8 +5,9 @@
 	layout:decorate="~{layout/default}">
 	
 	<section layout:fragment="contents" class="contents d-flex justify-content-center">
-		<div class="memo-list my-5 ">
-			<h1 class="text-center">메모 리스트</h1>		
+		<div class="memo-box my-5 ">
+			<h1 class="text-center">메모 리스트</h1>	
+				
 			<div class="table-container mt-5">
 				<table class="table table-bordered text-center">
 					<thead>
@@ -17,26 +18,17 @@
 				        </tr>
 				    </thead>
 				    <tbody>
-				        <tr>
-				            <td>21</td>
-				            <td>이번 주 일정 정리</td>
-				            <td>2024-08-21</td>
-				        </tr>
-				        <tr>
-				            <td>19</td>
-				            <td>유럽 여행 계획 키워드</td>
-				            <td>2024-08-05</td>
-				        </tr>
-				        <tr>
-				            <td>15</td>
-				            <td>올해 꼭 해야 할 일</td>
-				            <td>2024-01-03</td>
+				        <tr th:each="memo:${memoList}">
+				            <td th:text="${memo.id}">21</td>
+				            <td><a th:href="|/post/detail-view?id=${memo.id}|" th:text="${memo.title}">이번 주 일정 정리</a></td>
+				            <td th:text="${#temporals.format(memo.createdAt, 'yyyy-M-dd hh:mm:ss')}">2024-08-21</td> <!-- format 사용 -->
 				        </tr>
 				    </tbody>
 				</table>
 			</div>
+			
 			<div class="d-flex justify-content-end">
-				<button type="button" class="btn btn-secondary">메모 쓰기</button>	
+				<a href="/post/create-view" class="btn btn-secondary">메모 쓰기</a>
 			</div>
 			
 		</div>

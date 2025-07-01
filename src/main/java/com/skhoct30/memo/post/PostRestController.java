@@ -40,7 +40,7 @@ public class PostRestController {
 		
 		// 얘는 데이터가 오브젝트에 있어서 다운캐스팅으로 long 을 변경해줘야함.
 		// 
-		long userId = (long)session.getAttribute("userId");
+		Long userId = (Long)session.getAttribute("userId");
 		
 		
 		Map<String, String> resultMap = new HashMap<>();
