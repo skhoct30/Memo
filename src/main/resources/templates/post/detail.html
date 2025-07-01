@@ -9,7 +9,10 @@
 			<h2 class="text-center">메모 상세</h2>
 			<input type="text" class="form-control mt-3" placeholder="제목을 입력하세요." id="titleInput" th:value="${memo.title}" value="메모 제목">
 			<textarea class="form-control mt-3" rows="10" placeholder="내용을 입력하세요." id="contentsInput" th:text=${memo.contents}>메모 내용 입니다.</textarea>
-			<input type="file" class="mt-3">
+			
+			<!-- 이미지를 포함시키는 곳 -->
+			<img th:src="${memo.imagePath}">
+			
 			<div class="d-flex justify-content-between mt-3">
 				<button type="button" class="btn btn-danger">삭제</button>
 				
