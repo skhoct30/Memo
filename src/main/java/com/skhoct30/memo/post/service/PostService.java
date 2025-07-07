@@ -89,5 +89,71 @@ public class PostService {
 	}
 	
 	
+	// 수정하는 기능 boolean 성공 실패여부 메모 수정이 된건지 아닌지
+	public boolean updatePost(
+			long id
+			, String title
+			, String contents) {
+		
+		// 널인지 아닌지 그리고 얻어오기위해서 .
+		// Optional 로 전달받은 아이디를 확인해야함. 게시물 수정하니까 하나 클릭했을 때 그 게시물의 id ㄱ값을 얻어오는 그런그림
+		Optional<Post> optionalPost = postRepository.findById(id);
+		
+		if(optionalPost.isPresent()) {
+			
+			Post post = optionalPost.get();
+			
+			post = post.toBuilder()
+			.title(title)
+			.contents(contents)
+			.build();
+			
+			
+			try {
+				postRepository.save(post);
+				
+			} catch(PersistenceException e) {
+				return false;
+			}
+
+		} else {
+			return false;
+		}
+		return true;
+		
+		
+	}
+	
+	
+	
+	
+	//삭제기능
+	
+	public boolean deletePost(long id) {
+		
+		// 한행의 정보를 가져오면 좋음
+		Optional<Post> optionalPost = postRepository.findById(id);
+		
+		
+		if(optionalPost.isPresent()) {
+			
+			Post post = optionalPost.get();
+			
+			
+			// 삭제대상 가져오기
+			postRepository.delete(post);
+			
+			
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	
+	
+	
 	
 }

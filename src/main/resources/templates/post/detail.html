@@ -5,7 +5,7 @@
 	layout:decorate="~{layout/default}">
 	
 	<section layout:fragment="contents" class="contents d-flex justify-content-center">
-		<div class="memo-box my-5">
+		<div class="memo-box my-5" th:data-id-id="${memo.id}" id="memoContents">
 			<h2 class="text-center">메모 상세</h2>
 			<input type="text" class="form-control mt-3" placeholder="제목을 입력하세요." id="titleInput" th:value="${memo.title}" value="메모 제목">
 			<textarea class="form-control mt-3" rows="10" placeholder="내용을 입력하세요." id="contentsInput" th:text=${memo.contents}>메모 내용 입니다.</textarea>
@@ -18,10 +18,54 @@
 				
 				<div>
 					<a href="/post/list-view" class="btn btn-secondary">목록으로</a>
-					<button type="button" class="btn btn-secondary" id="saveBtn">저장</button>
+					<button type="button" class="btn btn-secondary" id="updateBtn">수정</button>
 				</div>
 			</div>
-			
+			a
 		</div>
 	
 	</section>
+	<script layout:fragment="script">
+		$("#updateBtn").on("click", function(){
+			
+			let id = $("#memoContents").data("id");
+			let title = $("#titleInput").val();
+			let contents = $("#contentsInput").val();
+			
+			
+			if(title == "") {
+				alert("제목을 입력하세요");
+				return;
+			}
+			
+			if(contents == "") {
+				alert("내용을 입력하세요");
+				return;
+			}
+			
+			// 수정대상에 대한 id 값이 필요하다.
+			$.ajax({
+				type:"put"
+				, url:"/post/update"
+				, data:{"id":id, "title":title, "contents":contents}
+				, success:function(response) {
+					if(response.result == "success") {
+						location.reload();
+					} else {
+						alert("수정 실패!");
+					}
+				}
+				, error:function() {
+					alert("메모 내용 수정 오류!");
+				}
+			})
+			
+			
+		});
+	
+	
+	</script>
+	
+	
+</html>
+	

@@ -18,7 +18,7 @@ import lombok.ToString;
 
 @ToString
 @Getter
-@Builder
+@Builder(toBuilder=true) // 수정된 객체를 다시 얻어오는 것.
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="`post`")
