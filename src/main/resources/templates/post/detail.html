@@ -5,7 +5,7 @@
 	layout:decorate="~{layout/default}">
 	
 	<section layout:fragment="contents" class="contents d-flex justify-content-center">
-		<div class="memo-box my-5" th:data-id-id="${memo.id}" id="memoContents">
+		<div class="memo-box my-5" th:data-id="${memo.id}" id="memoContents">
 			<h2 class="text-center">메모 상세</h2>
 			<input type="text" class="form-control mt-3" placeholder="제목을 입력하세요." id="titleInput" th:value="${memo.title}" value="메모 제목">
 			<textarea class="form-control mt-3" rows="10" placeholder="내용을 입력하세요." id="contentsInput" th:text=${memo.contents}>메모 내용 입니다.</textarea>
@@ -14,18 +14,44 @@
 			<img th:src="${memo.imagePath}">
 			
 			<div class="d-flex justify-content-between mt-3">
-				<button type="button" class="btn btn-danger">삭제</button>
+				<button type="button" class="btn btn-danger" id="deleteBtn">삭제</button>
 				
 				<div>
 					<a href="/post/list-view" class="btn btn-secondary">목록으로</a>
 					<button type="button" class="btn btn-secondary" id="updateBtn">수정</button>
 				</div>
 			</div>
-			a
+			
 		</div>
 	
 	</section>
 	<script layout:fragment="script">
+	
+		//삭제
+		$("#deleteBtn").on("click", function(){
+			let id = $("#memoContents").data("id");
+			
+			$.ajax({
+				type:"delete"
+				, url:"/post/delete"
+				, data:{"id":id}
+				, success:function(response) {
+					if(response.result == "success") {
+						location.href="/post/list-view"
+					} else {
+						alert("삭제 실패!");
+					}
+				}
+				, erreo:function() {
+					alert("삭제중 에러 발생!")
+				}
+			})
+			
+		})
+	
+	
+	
+	
 		$("#updateBtn").on("click", function(){
 			
 			let id = $("#memoContents").data("id");

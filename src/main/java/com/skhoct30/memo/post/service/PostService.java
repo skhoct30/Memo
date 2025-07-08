@@ -139,6 +139,8 @@ public class PostService {
 			
 			Post post = optionalPost.get();
 			
+			FileManager.removeFile(post.getImagePath()); // 포스트 안에 이미지 패스의 경로 (값을 전달하자 파일매니저에)
+						
 			
 			// 삭제대상 가져오기
 			postRepository.delete(post);

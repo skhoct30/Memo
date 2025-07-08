@@ -83,11 +83,51 @@ public class FileManager {
 		
 		return "/images" + directoryName + "/" + file.getOriginalFilename();
 		
-		
-		
-		
-		
-		
 	}
+	
+	
+	
+	// 파일 삭제 기능
+	
+	public static boolean removeFile(String filePath) { // /images/2_51234543/test.png
+		
+		if(filePath == null) {
+			return false;
+		}
+		
+		
+		String fullFilePath = FILE_UPLOAD_PATH + filePath.replace("/image", "");
+		
+		Path path = Paths.get(fullFilePath);
+		
+		
+		//  D:\\seo_kang_hyun\\springProject\\upload/2_51234543/test.png
+		Path dirPath = path.getParent();
+		try {
+			Files.delete(path);
+			Files.delete(dirPath);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		} 
+		
+		return true;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
